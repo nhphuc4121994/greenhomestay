@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "/" => "homes"
   resources :room_facilities
   resources :bath_types
   resources :bed_types
