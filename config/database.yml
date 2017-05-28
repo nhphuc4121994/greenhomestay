@@ -82,6 +82,7 @@ test:
 #
 production:
   <<: *default
+  adapter: postgresql
   database: GreenHomeStay_production
   username: GreenHomeStay
   password: <%= ENV['GREENHOMESTAY_DATABASE_PASSWORD'] %>
