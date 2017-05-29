@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rooms
   resources :room_facilities
   resources :bath_types
   resources :bed_types
