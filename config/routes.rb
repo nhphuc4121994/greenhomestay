@@ -14,4 +14,12 @@ Rails.application.routes.draw do
   resources :home_types
   resources :homes
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  #jwt
+  resources :users, only: :create do
+    collection do
+      post 'confirm'
+      post 'login'
+    end
+  end
 end
