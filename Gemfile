@@ -49,3 +49,5 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'rspec', '~> 3.4'
 gem "will_paginate"
 gem 'jwt'
+gem 'peek'
+gem 'carrierwave'

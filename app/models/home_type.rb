@@ -1,4 +1,5 @@
 class HomeType < ApplicationRecord
     has_many :homes
-    self.per_page = 4
+    mount_uploader :image, ImageUploader
+    self.per_page = 10
 end

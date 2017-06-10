@@ -46,6 +46,6 @@ class RulesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def rule_params
-      params.require(:rule).permit(:name, :description)
+      params.permit(:name, :description)
     end
 end

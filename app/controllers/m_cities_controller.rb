@@ -46,6 +46,6 @@ class MCitiesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def m_city_params
-      params.require(:m_city).permit(:pref_id, :city_name)
+      params.permit(:pref_id, :city_name)
     end
 end

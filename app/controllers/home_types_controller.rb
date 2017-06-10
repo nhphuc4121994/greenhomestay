@@ -46,7 +46,7 @@ class HomeTypesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def home_type_params
-      params.require(:home_type).permit(:name, :image)
+      params.permit(:name, :image)
     end
 
     private
