@@ -4,5 +4,6 @@ class Home < ApplicationRecord
     has_many :home_rules
     has_many :home_facilities
     has_many :rooms
-    self.per_page = 4
+    mount_uploader :image, ImageUploader
+    self.per_page = 10
 end

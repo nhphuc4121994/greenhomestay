@@ -4,5 +4,6 @@ class Room < ApplicationRecord
   belongs_to :bed_type
   belongs_to :bath_type
   belongs_to :home
-
+  mount_uploader :image, ImageUploader
+  self.per_page = 10
 end

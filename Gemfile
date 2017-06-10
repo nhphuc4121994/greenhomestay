@@ -20,8 +20,6 @@ gem 'bcrypt', '~> 3.1.11'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
@@ -38,6 +36,12 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+group :production do
+  gem 'pg', '~> 0.18'
+  gem 'rails_12factor'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'rack-cors', '~> 0.4.0'
@@ -45,3 +49,5 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'rspec', '~> 3.4'
 gem "will_paginate"
 gem 'jwt'
+gem 'peek'
+gem 'carrierwave'

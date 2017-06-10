@@ -46,6 +46,6 @@ class BedTypesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def bed_type_params
-      params.require(:bed_type).permit(:name)
+      params.permit(:name)
     end
 end

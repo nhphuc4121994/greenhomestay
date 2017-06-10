@@ -46,6 +46,6 @@ class BathTypesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def bath_type_params
-      params.require(:bath_type).permit(:name)
+      params.permit(:name)
     end
 end

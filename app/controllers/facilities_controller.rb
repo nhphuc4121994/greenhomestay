@@ -46,6 +46,6 @@ class FacilitiesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def facility_params
-      params.require(:facility).permit(:name, :description)
+      params.permit(:name, :description)
     end
 end

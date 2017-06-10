@@ -46,6 +46,6 @@ class MPrefsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def m_pref_params
-      params.require(:m_pref).permit(:pref_name)
+      params.permit(:pref_name)
     end
 end
