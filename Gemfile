@@ -51,3 +51,4 @@ gem "will_paginate"
 gem 'jwt'
 gem 'peek'
 gem 'carrierwave'
+gem 'faker'
