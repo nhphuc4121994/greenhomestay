@@ -3,7 +3,7 @@ class HomesController < ApplicationController
 
   # GET /homes
   def index
-    @homes = Home.page(params[:page] ? params[:page][:number] : 1)
+    @homes = Home.select("homes.id,homes.name,homes.home_type_id,home_types.name as home_type_name, homes.m_pref_id, m_prefs.pref_name as m_pref_name,homes.description,homes.image,homes.address,homes.status,homes.created_at,homes.updated_at").joins("INNER JOIN home_types ON homes.home_type_id = home_types.id INNER JOIN m_prefs ON homes.m_pref_id = m_prefs.id").page(params[:page] ? params[:page][:number] : 1)
 
     render json: @homes, meta: pagination_meta(@homes)
   end
