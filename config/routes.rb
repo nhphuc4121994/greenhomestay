@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   resources :rooms
   resources :room_facilities
   resources :bath_types
@@ -12,7 +13,11 @@ Rails.application.routes.draw do
   resources :m_cities
   resources :m_prefs
   resources :home_types
-  resources :homes
+  resources :homes do
+    collection do
+      get 'type', to: 'homes#getHomeByType'
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   #jwt
