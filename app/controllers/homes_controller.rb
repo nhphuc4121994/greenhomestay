@@ -9,7 +9,10 @@ class HomesController < ApplicationController
   end
 #GET /homes/type/:type_id
   def getHomeByType
-    @home = Home.select("homes.id,homes.name,homes.home_type_id,home_types.name as home_type_name, homes.m_pref_id, m_prefs.pref_name as m_pref_name,homes.description,homes.image,homes.address,homes.status,homes.created_at,homes.updated_at").joins("INNER JOIN home_types ON homes.home_type_id = home_types.id INNER JOIN m_prefs ON homes.m_pref_id = m_prefs.id").where("home_type_id = ?", params[:type_id])
+    @home = Home.select("homes.id,homes.name,homes.home_type_id,home_types.name as home_type_name,
+        homes.m_pref_id, m_prefs.pref_name as m_pref_name,homes.description,homes.image,
+        homes.address,homes.status,homes.created_at,homes.updated_at").joins("INNER JOIN home_types ON homes.home_type_id = home_types.id INNER JOIN m_prefs ON homes.m_pref_id = m_prefs.id
+         ").where("home_type_id = ?", params[:type_id])
     render json: @home
   end
   # GET /homes/1
@@ -45,15 +48,17 @@ class HomesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_home
-      @home = Home.includes(:rooms).select("homes.id,homes.name,homes.home_type_id
-        ,home_types.name as home_type_name, homes.m_pref_id, 
+      @home = Home.joins(:rooms).select("homes.id,homes.name,homes.home_type_id
+        ,home_types.name as home_type_name, homes.m_pref_id,
         m_prefs.pref_name as m_pref_name,homes.description,homes.image,homes.address,
         homes.status,homes.created_at,homes.updated_at")
-      .joins("INNER JOIN home_types ON homes.home_type_id = home_types.id 
-        INNER JOIN m_prefs ON homes.m_pref_id = m_prefs.id  LEFT JOIN rooms ON rooms.home_id = homes.id").find(params[:id])
-      @room = Room.where("home_id = ?", params[:id])
-     
-     render json: @room.to_a << @home
+      .joins("INNER JOIN home_types ON homes.home_type_id = home_types.id
+        INNER JOIN m_prefs ON homes.m_pref_id = m_prefs.id").where('homes.id = ?',  params[:id])
+     #  @room = Room.where("home_id = ?", params[:id])
+     #
+     # render json: @room.to_a << @home
+     #  @home = Home.joins(:rooms).select("homes.*, rooms.*").where('homes.id = ?',  params[:id])
+      render json: @home
     end
 
     # Only allow a trusted parameter "white list" through.
