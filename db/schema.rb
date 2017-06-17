@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170617044526) do
+ActiveRecord::Schema.define(version: 20170617050419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,13 +41,6 @@ ActiveRecord::Schema.define(version: 20170617044526) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "home_rules", force: :cascade do |t|
-    t.integer  "rule_id"
-    t.integer  "home_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "home_types", force: :cascade do |t|
     t.string   "name",       null: false
     t.text     "image",      null: false
@@ -65,6 +58,13 @@ ActiveRecord::Schema.define(version: 20170617044526) do
     t.integer  "status",       null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "homes_rules", force: :cascade do |t|
+    t.integer  "rule_id"
+    t.integer  "home_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "m_cities", force: :cascade do |t|
