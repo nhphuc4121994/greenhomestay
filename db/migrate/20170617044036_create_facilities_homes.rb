@@ -1,6 +1,6 @@
-class CreateHomeFacilities < ActiveRecord::Migration[5.0]
+class CreateFacilitiesHomes < ActiveRecord::Migration[5.0]
   def change
-    create_table :home_facilities do |t|
+    create_table :facilities_homes do |t|
       t.integer :home_id
       t.integer :facility_id
 

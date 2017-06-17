@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe HomeFacilitiesController, type: :controller do
+RSpec.describe FacilitiesHomesController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # HomeFacility. As you add validations to HomeFacility, be sure to
+  # FacilitiesHome. As you add validations to FacilitiesHome, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,12 +38,12 @@ RSpec.describe HomeFacilitiesController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # HomeFacilitiesController. Be sure to keep this updated too.
+  # FacilitiesHomesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      home_facility = HomeFacility.create! valid_attributes
+      facilities_home = FacilitiesHome.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_success
     end
@@ -51,33 +51,33 @@ RSpec.describe HomeFacilitiesController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      home_facility = HomeFacility.create! valid_attributes
-      get :show, params: {id: home_facility.to_param}, session: valid_session
+      facilities_home = FacilitiesHome.create! valid_attributes
+      get :show, params: {id: facilities_home.to_param}, session: valid_session
       expect(response).to be_success
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new HomeFacility" do
+      it "creates a new FacilitiesHome" do
         expect {
-          post :create, params: {home_facility: valid_attributes}, session: valid_session
-        }.to change(HomeFacility, :count).by(1)
+          post :create, params: {facilities_home: valid_attributes}, session: valid_session
+        }.to change(FacilitiesHome, :count).by(1)
       end
 
-      it "renders a JSON response with the new home_facility" do
+      it "renders a JSON response with the new facilities_home" do
 
-        post :create, params: {home_facility: valid_attributes}, session: valid_session
+        post :create, params: {facilities_home: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(home_facility_url(HomeFacility.last))
+        expect(response.location).to eq(facilities_home_url(FacilitiesHome.last))
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new home_facility" do
+      it "renders a JSON response with errors for the new facilities_home" do
 
-        post :create, params: {home_facility: invalid_attributes}, session: valid_session
+        post :create, params: {facilities_home: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -90,27 +90,27 @@ RSpec.describe HomeFacilitiesController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested home_facility" do
-        home_facility = HomeFacility.create! valid_attributes
-        put :update, params: {id: home_facility.to_param, home_facility: new_attributes}, session: valid_session
-        home_facility.reload
+      it "updates the requested facilities_home" do
+        facilities_home = FacilitiesHome.create! valid_attributes
+        put :update, params: {id: facilities_home.to_param, facilities_home: new_attributes}, session: valid_session
+        facilities_home.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the home_facility" do
-        home_facility = HomeFacility.create! valid_attributes
+      it "renders a JSON response with the facilities_home" do
+        facilities_home = FacilitiesHome.create! valid_attributes
 
-        put :update, params: {id: home_facility.to_param, home_facility: valid_attributes}, session: valid_session
+        put :update, params: {id: facilities_home.to_param, facilities_home: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the home_facility" do
-        home_facility = HomeFacility.create! valid_attributes
+      it "renders a JSON response with errors for the facilities_home" do
+        facilities_home = FacilitiesHome.create! valid_attributes
 
-        put :update, params: {id: home_facility.to_param, home_facility: invalid_attributes}, session: valid_session
+        put :update, params: {id: facilities_home.to_param, facilities_home: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -118,11 +118,11 @@ RSpec.describe HomeFacilitiesController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested home_facility" do
-      home_facility = HomeFacility.create! valid_attributes
+    it "destroys the requested facilities_home" do
+      facilities_home = FacilitiesHome.create! valid_attributes
       expect {
-        delete :destroy, params: {id: home_facility.to_param}, session: valid_session
-      }.to change(HomeFacility, :count).by(-1)
+        delete :destroy, params: {id: facilities_home.to_param}, session: valid_session
+      }.to change(FacilitiesHome, :count).by(-1)
     end
   end
 
