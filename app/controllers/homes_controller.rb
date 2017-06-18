@@ -3,18 +3,35 @@ class HomesController < ApplicationController
 
   # GET /homes
   def index
-    @homes = Home.select("homes.id,homes.name,homes.home_type_id,home_types.name as home_type_name, homes.m_pref_id, m_prefs.pref_name as m_pref_name,homes.description,homes.image,homes.address,homes.status,homes.created_at,homes.updated_at").joins("INNER JOIN home_types ON homes.home_type_id = home_types.id INNER JOIN m_prefs ON homes.m_pref_id = m_prefs.id").page(params[:page] ? params[:page][:number] : 1)
+    @homes = Home.select("homes.*").page(params[:page] ? params[:page][:number] : 1)
 
     render json: @homes, meta: pagination_meta(@homes)
   end
 #GET /homes/type/:type_id
   def getHomeByType
-    @home = Home.select("homes.id,homes.name,homes.home_type_id,home_types.name as home_type_name,
-        homes.m_pref_id, m_prefs.pref_name as m_pref_name,homes.description,homes.image,
-        homes.address,homes.status,homes.created_at,homes.updated_at").joins("INNER JOIN home_types ON homes.home_type_id = home_types.id INNER JOIN m_prefs ON homes.m_pref_id = m_prefs.id
-         ").where("home_type_id = ?", params[:type_id])
+    @home = Home.select("homes.*").where("home_type_id = ?", params[:type_id])
     render json: @home
   end
+
+
+  def search
+    address =  params[:address]
+    name = params[:name]
+    price = params[:price]
+    accommodates = params[:accommodates]
+    search_home = Home.select("homes.*")
+    # search_home = Home.joins("INNER JOIN home_types ON homes.home_type_id = home_types.id INNER JOIN m_prefs ON homes.m_pref_id = m_prefs.id")
+    search_home = Home.where('homes.address = ?', address) unless address.blank?
+    search_home = Home.where('homes.name = ?', name) unless name.blank?
+    # search_home = Home.where('rooms.price = ?', price) unless price.blank?
+    search_home = Home.joins("LEFT JOIN rooms ON rooms.home_id = homes.id").where('rooms.price = ?', price) unless price.blank?
+    search_home = Home.joins("LEFT JOIN rooms ON rooms.home_id = homes.id").where('rooms.accommodates = ?', accommodates) unless accommodates.blank?
+    @home = search_home
+    render json: @home
+  end
+
+
+
   # GET /homes/1
   def show
     render json: @home
@@ -48,12 +65,7 @@ class HomesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_home
-      @home = Home.joins(:rooms).select("homes.id,homes.name,homes.home_type_id
-        ,home_types.name as home_type_name, homes.m_pref_id,
-        m_prefs.pref_name as m_pref_name,homes.description,homes.image,homes.address,
-        homes.status,homes.created_at,homes.updated_at")
-      .joins("INNER JOIN home_types ON homes.home_type_id = home_types.id
-        INNER JOIN m_prefs ON homes.m_pref_id = m_prefs.id").where('homes.id = ?',  params[:id])
+      @home = Home.select("homes.*").where('homes.id = ?',  params[:id])
      #  @room = Room.where("home_id = ?", params[:id])
      #
      # render json: @room.to_a << @home

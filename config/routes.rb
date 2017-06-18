@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :homes do
     collection do
       get 'type', to: 'homes#getHomeByType'
+      post 'search', to: 'homes#search'
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
